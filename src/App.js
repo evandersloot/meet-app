@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
+
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+
 import { extractLocations, getEvents } from './api';
+
+import './App.css';
+import './nprogress.css'
 
 class App extends Component {
   state = {
