@@ -2,25 +2,6 @@ import { mockData } from './mock-data';
 import NProgress from 'nprogress';
 import axios from 'axios';
 
-export const extractLocations = (events) => {
-  var extractLocations = events.map((event) => event.location);
-  var locations = [...new Set(extractLocations)];
-  return locations;
-};
-
-const getToken = async (code) => {
-  const encodeCode = encodeURIComponent(code);
-  const { access_token } = await fetch('https://dx9dq6q3th.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode)
-    .then((res) => {
-      return res.json();
-    })
-    .catch((error) => error);
-
-  access_token && localStorage.setItem('access_toke', access_token);
-
-  return access_token;
-}
-
 const checkToken = async (accessToken) => {
   const result = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`)
     .then((res) => res.json())
@@ -40,6 +21,12 @@ const removeQuery = () => {
     newurl = window.location.protocol + '//' + window.location.host;
     window.history.pushState('', '', newurl);
   }
+};
+
+export const extractLocations = (events) => {
+  var extractLocations = events.map((event) => event.location);
+  var locations = [...new Set(extractLocations)];
+  return locations;
 };
 
 export const getEvents = async () => {
@@ -82,4 +69,17 @@ export const getAccessToken = async () => {
       return code && getToken(code);
     }
     return accessToken;
+}
+
+const getToken = async (code) => {
+  const encodeCode = encodeURIComponent(code);
+  const { access_token } = await fetch('https://dx9dq6q3th.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => error);
+
+  access_token && localStorage.setItem('access_toke', access_token);
+
+  return access_token;
 }
