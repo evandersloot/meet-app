@@ -2,6 +2,11 @@
 .App {
   text-align: center;
   padding: 2% 5%;
+  background-image: url(world.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
 }
 
 .App * {
@@ -47,6 +52,7 @@ input[type="number"] {
   max-width: 300px;
   margin: auto;
   position: relative;
+  
 }
 
 .suggestions {
@@ -76,13 +82,21 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
+.EventList {
+  display: grid;
+}
+
 .event {
   padding: 10px 10px 35px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid gray;
   border-radius: 4px;
   position: relative;
+}
+
+.event-title, .event-location, .event-start, .event-details {
+  color: black;
 }
 
 .details-btn {
@@ -117,8 +131,8 @@ input[type="number"] {
 .events-container {
   width: 200px;
   margin: 20px auto;
+  margin-left: 0px;
   text-align: center;
-
 }
 
 .button-wrapper {
@@ -198,7 +212,6 @@ input[type="number"] {
   letter-spacing: 0.2px;
   font-family: "Roboto";
 }
-
 
 
 @media only screen and (min-width: 992px) {
