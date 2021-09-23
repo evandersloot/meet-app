@@ -7,7 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 
 import './App.css';
-import './nprogress.css'
+import './nprogress.css';
 
 class App extends Component {
   state = {
@@ -43,8 +43,8 @@ class App extends Component {
     return (
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <EventList events={this.state.events} />
         <NumberOfEvents />
+        <EventList events={this.state.events} />
       </div>
     );
   }

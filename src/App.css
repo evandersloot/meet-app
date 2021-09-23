@@ -114,10 +114,11 @@ input[type="number"] {
   overflow-x: hidden;
 }
 
-.numberOfEvents {
+.events-container {
   width: 200px;
   margin: 20px auto;
   text-align: center;
+
 }
 
 .button-wrapper {

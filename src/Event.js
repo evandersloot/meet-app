@@ -36,12 +36,12 @@ eventDetails(event) {
         const { event } = this.props;
 
         return  (
-        <div className="events">
+        <div className="event">
             <h1 className="event-title">{event.summary}</h1>
             <h2 className="event-location">{event.location}</h2>
             <p className="event-start">{new Date(event.start.dateTime).toString()}</p>
             <p className="event-details">{this.eventDetails(event)}</p>
-            <button className="details-button" 
+            <button className="details-btn" 
                 onClick={() => {
                 this.showDetails(event)}}>{this.buttonText()}
             </button>
