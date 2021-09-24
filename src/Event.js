@@ -46,6 +46,7 @@ eventDetails(event) {
                 this.showDetails(event)}}>{this.buttonText()}
             </button>
         </div>
+        
         )
     }
 }

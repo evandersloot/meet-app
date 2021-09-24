@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 class CitySearch extends Component {   
     state = {
     query: '',
@@ -31,7 +29,7 @@ class CitySearch extends Component {
     render() {
         return (
            <div className="CitySearch">
-               <label className="text-light">Search your city: </label>
+               <label>Search your city: </label>
                <input
                     type="text"
                     className="city"
