@@ -2,7 +2,7 @@
 .App {
   text-align: center;
   padding: 2% 5%;
-  background-image: url(world.jpg);
+  background: url("world.jpg");
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -42,7 +42,11 @@ input[type="number"] {
 }
 
 .city {
-  width: 250px;
+  width: 150px;
+}
+
+.change-number {
+  width: 150px;
 }
 
 .CitySearch {
@@ -53,6 +57,7 @@ input[type="number"] {
   margin: auto;
   position: relative;
   margin-left: 0px;
+  margin-top: 35px;
 }
 
 .suggestions {
@@ -85,7 +90,7 @@ input[type="number"] {
 .EventList {
   display: grid;
   position: relative;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .event {
