@@ -2,28 +2,44 @@ import React, { Component } from 'react';
 
 class CitySearch extends Component {   
     state = {
-    query: '',
-    suggestions: [],
-    showSuggestions: undefined
+        locations: this.props.locations,
+        query: '',
+        suggestions: [],
+        showSuggestions: false
     }
 
     handleInputChanged = (event) => {
         const value = event.target.value;
+        this.setState({ showSuggestions: true });
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
-        this.setState({
-            query: value,
-            suggestions,
-        });
-      };
+        if(value === '') {
+            this.setState({
+                suggestions: [],
+                query: '',
+                showSuggestions: false,
+            })
+        };
+        if(suggestions.length === 0) {
+            this.setState({
+                query: value,
+            });
+        } else {
+            return this.setState({
+                query: value,
+                suggestions
+            });
+        }
+    };
 
     handleItemClicked = (suggestion) => {
         this.setState({
             query: suggestion,
+            suggestions: [],
             showSuggestions: false
         });
-        this.props.updateEvents(suggestion);
+        this.props.updateEvents(suggestion, 0);
     }
 
     render() {

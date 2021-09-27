@@ -10,8 +10,7 @@ class EventList extends Component {
                     <li key={event.id}>
                         <Event event={event} />
                     <hr></hr>
-                    </li>
-                    
+                    </li>       
                 )}
             </ul>
         );

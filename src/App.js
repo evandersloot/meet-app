@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-
 import { extractLocations, getEvents } from './api';
-
 import './App.css';
 import './nprogress.css';
+import './EventList';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
-    currentLocation: 'all',
-    numberOfEvents: 24
+    numberOfEvents: 24,
+    currentLocation: 'all'
   }
 
   componentDidMount() {
@@ -23,31 +21,31 @@ class App extends Component {
       if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });
       }
-    });
+    })
   }
 
   componentWillUnmount(){
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
+    let locationEvents;
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-      events :
-      events.filter((event) => event.location === location);
-        this.setState({
-          events: locationEvents
-        });
+      if (location === 'all' && eventCount === 0) {
+        locationEvents = events;
+      } else if (location !== 'all' && eventCount === 0) {
+        locationEvents = events.filter((event) => event.location === location);
+      } else if (location === '' && eventCount > 0) {
+        locationEvents = events.slice(0, eventCount);
+      } else if (location === '' && eventCount === '') {
+        locationEvents = events;
+      }
+      this.setState({
+        events: locationEvents,
+        numberOfEvents: eventCount,
+      });
     });
-  }
-
-  updateEventCount = (eventCount) => {
-    const { currentLocation } = this.state;
-    this.setState({
-      numberOfEvents: eventCount 
-    });
-    this.updateEvents(currentLocation, eventCount);
-  }
+  };
 
   render() {
     
