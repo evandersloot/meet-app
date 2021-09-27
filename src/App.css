@@ -2,7 +2,7 @@
 .App {
   text-align: center;
   padding: 2% 5%;
-  background: url(./img/world.jpg);
+  background-image: url(./img/world.jpg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
