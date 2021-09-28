@@ -1,16 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
 .App {
   text-align: center;
   padding: 2% 5%;
-  background-image: url(./img/world.jpg);
+  background-image: url(img/world.jpg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: scroll;
+  background-attachment: fixed;
 }
 
 .App * {
   box-sizing: border-box;
+  
 }
 
 ul {
