@@ -25,6 +25,8 @@ functions:
       - http:
           path: api/token/{code}
           method: get
+          cors:
+            origin: '*'
   getCalendarEvents:
     handler: handler.getCalendarEvents
     events:
