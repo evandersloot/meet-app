@@ -5,7 +5,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import './nprogress.css';
-import './EventList';
+
 
 class App extends Component {
   state = {
@@ -49,6 +49,14 @@ class App extends Component {
     });
   };
 
+  updateEventCount = (eventCount) => {
+    this.setState({
+      numberOfEvents: eventCount
+    });
+    const { currentLocation } = this.state
+    this.updateEvents(currentLocation, eventCount);
+  };
+
   render() {
     const { locations, events, numberOfEvents } = this.state;
     
@@ -61,8 +69,7 @@ class App extends Component {
         />
         <NumberOfEvents 
           updateEvents={this.updateEvents}
-          numberOfEvents={numberOfEvents} 
-           
+          numberOfEvents={numberOfEvents}  
         />
         <EventList 
           events={events}
