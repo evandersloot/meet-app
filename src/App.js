@@ -18,7 +18,10 @@ class App extends Component {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({ 
+          events: events.slice(0, this.state.numberOfEvents), 
+          locations: extractLocations(events) 
+        });
       }
     })
   }
@@ -41,27 +44,28 @@ class App extends Component {
       }
       this.setState({
         events: locationEvents,
-        numberOfEvents: eventCount,
+        numberOfEvents: eventCount
       });
     });
   };
 
   render() {
+    const { locations, events, numberOfEvents } = this.state;
     
     return (
       <div className="App">
         <CitySearch 
-          locations={this.state.locations} 
+          locations={locations} 
           updateEvents={this.updateEvents}
-          numberOfEvents={this.state.numberOfEvents}
+          numberOfEvents={numberOfEvents}
         />
         <NumberOfEvents 
           updateEvents={this.updateEvents}
-          numberOfEvents={this.state.numberOfEvents} 
+          numberOfEvents={numberOfEvents} 
            
         />
         <EventList 
-          events={this.state.events}
+          events={events}
         />
       </div>
     );
