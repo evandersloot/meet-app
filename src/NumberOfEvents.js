@@ -16,6 +16,7 @@ class NumberOfEvents extends Component {
           this.setState({ 
             numberOfEvents: value,
           });
+          this.props.updateEventCount(event.target.value);
         }
     };
 
