@@ -77,4 +77,41 @@ describe('<App /> integration', () => {
         expect(AppWrapper.state('numberOfEvents')).toEqual(5);
         AppWrapper.unmount();
     });
+
+    test('location state stays same on numberOfEvents state change', () => {
+        const AppWrapper = mount(<App />);
+        const AppLocationsState = AppWrapper.state('locations');
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+        const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
+        expect(AppNumberOfEventsState).not.toEqual(undefined);
+        NumberOfEventsWrapper.instance().handleInputChanged({ target: {value: 5 } });
+        expect(AppWrapper.state('locations')).toEqual(AppLocationsState);
+        AppWrapper.unmount();
+    });
+
+    test('numberOfEvents state stays same on location state change', async () => {
+        const AppWrapper = mount(<App />);
+        const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
+        const CitySearchWrapper = AppWrapper.find(CitySearch);
+        const locations = extractLocations(mockData);
+        CitySearchWrapper.setState({ suggestions: locations });
+        const suggestions = CitySearchWrapper.state('suggestions');
+        const selectedIndex = Math.floor(Math.random() * (suggestions.length));
+        const selectedCity = suggestions[selectedIndex];
+        await CitySearchWrapper.instance().handleItemClicked(selectedCity);
+        const allEvents = await getEvents();
+        const eventsToShow = allEvents.filter(event => event.location === selectedCity);
+        expect(AppWrapper.state('events')).toEqual(eventsToShow);
+        expect(AppWrapper.state('numberOfEvents')).toEqual(AppNumberOfEventsState);
+        AppWrapper.unmount();
+    });
+
+    test('return results from mockData', () => {
+        const AppWrapper = mount(<App />);
+        AppWrapper.setState({
+            events: mockData
+        });
+        expect(AppWrapper.state('events', 'numberOfEvents')).toHaveLength(mockData.length);
+        AppWrapper.unmount();
+    })
 });
