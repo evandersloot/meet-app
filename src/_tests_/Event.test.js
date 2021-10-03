@@ -29,19 +29,19 @@ describe('<Event /> component', () => {
 
     test('render more details button', () => {
         expect(EventWrapper.state('showDetails')).toBe(false);
-        expect(EventWrapper.find('.details-button').text()).toBe('more details');
+        expect(EventWrapper.find('.details-btn').text()).toBe('more details');
     });
 
     test('render details on more details button click', () => {
-        EventWrapper.find('.details-button').simulate('click');
-        expect(EventWrapper.find('.details-button').text()).toBe('less details');
+        EventWrapper.find('.details-btn').simulate('click');
+        expect(EventWrapper.find('.details-btn').text()).toBe('less details');
         expect(EventWrapper.find('.event-details')).toHaveLength(1);
     });
 
     test('render less details on less details button click', () => {
         EventWrapper.setState({showDetails: true});
-        EventWrapper.find('.details-button').simulate('click');
-        expect(EventWrapper.find('.details-button').text()).toBe('more details');
+        EventWrapper.find('.details-btn').simulate('click');
+        expect(EventWrapper.find('.details-btn').text()).toBe('more details');
         expect(EventWrapper.find('.event-details').text()).toBe('');
     });
 

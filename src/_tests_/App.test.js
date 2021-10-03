@@ -67,4 +67,14 @@ describe('<App /> integration', () => {
         expect(AppWrapper.state('events')).toEqual(allEvents);
         AppWrapper.unmount();
     });
-})
+
+    test('pass numberOfEvents state to parent', () => {
+        const AppWrapper = mount(<App />);
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+        const AppNumberOfEventsWrapper = AppWrapper.state('numberOfEvents');
+        expect(AppNumberOfEventsWrapper).not.toEqual(undefined);
+        NumberOfEventsWrapper.instance().handleInputChanged({ target: {value: 5} });
+        expect(AppWrapper.state('numberOfEvents')).toEqual(5);
+        AppWrapper.unmount();
+    });
+});
