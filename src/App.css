@@ -145,7 +145,7 @@ input[type="number"] {
   width: 200px;
   margin: 20px auto;
   margin-left: 0px;
-  margin-bottom: 1px;
+  margin-bottom: 25px;
   text-align: center;
 }
 
@@ -155,11 +155,6 @@ input[type="number"] {
   grid-gap: 20px;
   padding: 20px;
   font-family: sans-serif;
-}
-
-.Alert {
-  position: fixed;
-  top: 20px;
 }
 
 .data-vis-wrapper {
