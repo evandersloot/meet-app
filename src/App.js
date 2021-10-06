@@ -3,10 +3,11 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { OfflineAlert } from './Alert';
-import { extractLocations, getEvents } from './api';
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import './App.css';
 import './nprogress.css';
 import NProgress from 'nprogress';
+import WelcomeScreen from './WelcomeScreen';
 
 
 class App extends Component {
@@ -15,11 +16,18 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     currentLocation: 'all',
-    offLineText: ''
+    offLineText: '',
+    showWelcomeScreen: undefined
   }
 
   async componentDidMount() {
     this.mounted = true;
+    const getAccessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
@@ -28,16 +36,16 @@ class App extends Component {
         });    
       }
     });
-    if(!navigator.onLine) {
-      this.setState({
-        offLineText: 'No connection. You may be viewing out of date events. For a current schedule, connect to the internet.',
-      });
-    } else {
-      this.setState({
-        offLineText: '',
-      });
+      if(!navigator.onLine) {
+        this.setState({
+          offLineText: 'No connection. You may be viewing out of date events. For a current schedule, connect to the internet.',
+        });
+      } else {
+        this.setState({
+          offLineText: '',
+        });
+      }
     }
-    NProgress.done();
   }
 
 
@@ -67,7 +75,9 @@ class App extends Component {
   }
 
   render() {
-    const { locations, events, numberOfEvents } = this.state;
+    if (this.state.showWelcomeScreen === undefined) 
+      return <div className='App' />
+    const { locations, events, numberOfEvents, showWelcomeScreen } = this.state;
     
     return (
       <div className="App">
@@ -83,6 +93,9 @@ class App extends Component {
         <EventList 
           events={events}
         />
+        <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => {
+          getAccessToken()
+        }} />
       </div>
     );
   }
