@@ -28,16 +28,16 @@ class App extends Component {
         });    
       }
     });
-      if(!navigator.onLine) {
-        this.setState({
-          offLineText: 'No connection. You may be viewing out of date events. For a current schedule, connect to the internet.',
-        });
-      } else {
-        this.setState({
-          offLineText: '',
-        });
-      }
-      NProgress.done();
+    if(!navigator.onLine) {
+      this.setState({
+        offLineText: 'No connection. You may be viewing out of date events. For a current schedule, connect to the internet.',
+      });
+    } else {
+      this.setState({
+        offLineText: '',
+      });
+    }
+    NProgress.done();
   }
 
 
