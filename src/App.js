@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import { OfflineAlert } from './Alert';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import './nprogress.css';
+import NProgress from 'nprogress';
 
 
 class App extends Component {
@@ -12,20 +14,32 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
-    currentLocation: 'all'
+    currentLocation: 'all',
+    offLineText: ''
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
           events: events.slice(0, this.state.numberOfEvents), 
           locations: extractLocations(events) 
-        });
+        });    
       }
     });
+      if(!navigator.onLine) {
+        this.setState({
+          offLineText: 'No connection. You may be viewing out of date events. For a current schedule, connect to the internet.',
+        });
+      } else {
+        this.setState({
+          offLineText: '',
+        });
+      }
+      NProgress.done();
   }
+
 
   componentWillUnmount(){
     this.mounted = false;
@@ -57,6 +71,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        <OfflineAlert text={this.state.offLineText} />
         <CitySearch 
           locations={locations} 
           updateEvents={this.updateEvents}
