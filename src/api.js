@@ -58,7 +58,7 @@ export const getAccessToken = async () => {
     return accessToken;
 }
 
-export const getEvents = async () => {
+export const getEvents = async (events) => {
   NProgress.start();
 
   if (window.location.href.startsWith('http://localhost')) {
