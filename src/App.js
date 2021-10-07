@@ -6,7 +6,6 @@ import { OfflineAlert } from './Alert';
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import './App.css';
 import './nprogress.css';
-import NProgress from 'nprogress';
 import WelcomeScreen from './WelcomeScreen';
 
 

@@ -24,7 +24,7 @@ function WelcomeScreen(props) {
             </button>
             </div>
             </div>
-            <a href="https://YOUR_GITHUB_USERNAME.github.io/meet/privacy.html" rel="nofollow noopener">Privacy policy</a>
+            <a href="https://evandersloot.github.io/meet-app/privacy.html" rel="nofollow noopener">Privacy policy</a>
             </div>
         )
         : null
