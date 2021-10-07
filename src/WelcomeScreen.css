@@ -1,13 +1,21 @@
+
 .WelcomeScreen {
   position: fixed;
   width: 100%;
+  max-width:1750px;
   height: 100%;
   top: 0;
-  background-image: url(img/world.jpg);
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  background: lightsteelblue;
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-left: -50px;
+  display: grid;
+  justify-content: center;
+}
+
+.image {
+  justify-content: center;
+  margin-left: 185px;
 }
 
 .login-button {
@@ -67,4 +75,6 @@
     width: 80%;
     height: 100%;
     text-align: center;
+    margin-top: 0px;
+    margin-right: 1px;
 }
