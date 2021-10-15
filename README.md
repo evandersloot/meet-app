@@ -1,4 +1,5 @@
 # meet-app
+![LinkUp - SS](https://user-images.githubusercontent.com/83362705/137534374-33581d9a-7484-4b5a-bcbd-9393446b4935.png)
 
 Objective
 * To build a serverless, progressive web application (PWA) with React using a test-driven
