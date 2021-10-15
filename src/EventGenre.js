@@ -4,7 +4,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
     const colors = ['#ff0000', '#0000ff', '#ffff00', '#ffa500', '#008000'];
-  
+    
+    // eslint-disable-next-line
     useEffect(() => { setData(() => getData()); }, [events]);
   
     const getData = () => {
@@ -34,7 +35,7 @@ const EventGenre = ({ events }) => {
                         ))
                     }
                 </Pie>
-                    <Legend align='right' height={50} />
+                    <Legend align='left' height={50} />
             </PieChart>
         </ResponsiveContainer>
     );
