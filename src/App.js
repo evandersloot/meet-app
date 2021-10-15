@@ -93,6 +93,8 @@ class App extends Component {
     return (
       <div className="App">
         <OfflineAlert text={this.state.offLineText} />
+        <h1 className="title-name">LinkUp</h1>
+        <h3 className="title-desc">Your source for finding the best Dev courses around the world</h3>
         <CitySearch 
           locations={locations} 
           updateEvents={this.updateEvents}
@@ -102,6 +104,7 @@ class App extends Component {
           updateEventCount={this.updateEventCount}
         />
         <div className='data-vis-wrapper'>
+          <EventGenre events={events} />
           <ResponsiveContainer height={400} >
             <ScatterChart
               width={800}
@@ -115,9 +118,9 @@ class App extends Component {
               <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
               <Scatter data={this.getData()} fill="#0000ff" />
-            </ScatterChart>
-            <EventGenre events={events} />
+            </ScatterChart> 
           </ResponsiveContainer>
+            
         </div>
         <EventList 
           events={events}
